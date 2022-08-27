@@ -1,12 +1,4 @@
-import kotlin.math.sqrt
-
 class GameOfLife {
-
-    fun run(cells: BooleanArray): BooleanArray {
-        val size = sqrt(cells.size.toDouble()).toInt()
-        val world = World(size, size, cells)
-        return run(world).cells
-    }
 
     fun run(world: World): World {
         val newWorld = World(world.width, world.height)
@@ -26,9 +18,9 @@ class GameOfLife {
         return when {
             neighbourgsCount < 2 && isAlive -> false
             (neighbourgsCount == 2 || neighbourgsCount == 3) && isAlive -> true
-            neighbourgsCount == 3 && !isAlive -> true
+            neighbourgsCount == 3 -> true
             neighbourgsCount > 3 && isAlive -> false
-            else -> isAlive
+            else -> false
         }
     }
 
