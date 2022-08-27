@@ -21,4 +21,32 @@ class GameOfLifeTest {
         assertArrayEquals(newCells, expectedCells)
     }
 
+    @Test
+    fun `should keep a cell alive if there are two neighbours alive`() {
+        // 0 1 0
+        // 1 1 0
+        // 0 0 0
+        val cells = BooleanArray(9)
+        cells[4] = true
+        cells[3] = true
+        cells[1] = true
+        val newCells = GameOfLife().run(cells)
+        val expectedCells = cells.clone()
+        assertArrayEquals(newCells, expectedCells)
+    }
+
+    @Test
+    fun `should keep a cell alive if there are three neighbours alive`() {
+        // 1 1 0
+        // 1 1 0
+        // 0 0 0
+        val cells = BooleanArray(9)
+        cells[4] = true
+        cells[3] = true
+        cells[1] = true
+        cells[0] = true
+        val newCells = GameOfLife().run(cells)
+        val expectedCells = cells.clone()
+        assertArrayEquals(newCells, expectedCells)
+    }
 }
