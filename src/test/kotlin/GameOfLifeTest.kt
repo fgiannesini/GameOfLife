@@ -66,4 +66,20 @@ class GameOfLifeTest {
         val newCells = GameOfLife().run(cells)
         assertTrue(newCells[0])
     }
+
+    @Test
+    fun `should kill a cell if it is alive and there are more than three neighbours alive`() {
+        // 1 1 1
+        // 1 1 0
+        // 0 0 0
+        val cells = BooleanArray(9)
+        cells[4] = true
+        cells[3] = true
+        cells[2] = true
+        cells[1] = true
+        cells[0] = true
+        val newCells = GameOfLife().run(cells)
+        assertFalse(newCells[1])
+        assertFalse(newCells[4])
+    }
 }
