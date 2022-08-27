@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions.assertArrayEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import kotlin.math.exp
 
@@ -9,17 +9,17 @@ class GameOfLifeTest {
         val cells = BooleanArray(9)
         cells[4] = true
         val newCells = GameOfLife().run(cells)
-        assertArrayEquals(newCells, BooleanArray(9))
+        assertFalse(newCells[4])
     }
 
     @Test
     fun `should kill a cell if there is one neighbour`() {
         val cells = BooleanArray(9)
-        cells[4] = true
         cells[3] = true
+        cells[4] = true
         val newCells = GameOfLife().run(cells)
-        val expectedCells = BooleanArray(9)
-        assertArrayEquals(newCells, expectedCells)
+        assertFalse(newCells[3])
+        assertFalse(newCells[4])
     }
 
     @Test
@@ -32,8 +32,9 @@ class GameOfLifeTest {
         cells[3] = true
         cells[1] = true
         val newCells = GameOfLife().run(cells)
-        val expectedCells = cells.clone()
-        assertArrayEquals(newCells, expectedCells)
+        assertTrue(newCells[1])
+        assertTrue(newCells[3])
+        assertTrue(newCells[4])
     }
 
     @Test
@@ -47,8 +48,10 @@ class GameOfLifeTest {
         cells[1] = true
         cells[0] = true
         val newCells = GameOfLife().run(cells)
-        val expectedCells = cells.clone()
-        assertArrayEquals(newCells, expectedCells)
+        assertTrue(newCells[0])
+        assertTrue(newCells[1])
+        assertTrue(newCells[3])
+        assertTrue(newCells[4])
     }
 
     @Test
@@ -61,8 +64,6 @@ class GameOfLifeTest {
         cells[3] = true
         cells[1] = true
         val newCells = GameOfLife().run(cells)
-        val expectedCells = cells.clone()
-        expectedCells[0] = true
-        assertArrayEquals(newCells, expectedCells)
+        assertTrue(newCells[0])
     }
 }
