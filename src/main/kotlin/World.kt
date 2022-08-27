@@ -26,6 +26,8 @@ data class World(val width: Int, val height: Int, val cells: BooleanArray = Bool
         return World(width, height, newCells)
     }
 
+    fun valueAt(x: Int, y: Int) = cells[x + y * width]
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
