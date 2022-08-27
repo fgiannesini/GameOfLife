@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
+import kotlin.math.exp
 
 class GameOfLifeTest {
 
@@ -47,6 +48,21 @@ class GameOfLifeTest {
         cells[0] = true
         val newCells = GameOfLife().run(cells)
         val expectedCells = cells.clone()
+        assertArrayEquals(newCells, expectedCells)
+    }
+
+    @Test
+    fun `should create a cell if it is dead and there are three neighbours alive`() {
+        // 0 1 0
+        // 1 1 0
+        // 0 0 0
+        val cells = BooleanArray(9)
+        cells[4] = true
+        cells[3] = true
+        cells[1] = true
+        val newCells = GameOfLife().run(cells)
+        val expectedCells = cells.clone()
+        expectedCells[0] = true
         assertArrayEquals(newCells, expectedCells)
     }
 }
