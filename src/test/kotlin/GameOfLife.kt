@@ -1,17 +1,12 @@
 class GameOfLife {
 
     fun run(world: World): World {
-        val newWorld = World(world.width, world.height)
-        for (x in 0 until world.width) {
-            for (y in 0 until world.height) {
-                val shouldBeAlive = shouldBeAlive(
-                    world.isAlive(x, y),
-                    world.countNeighbors(x, y)
-                )
-                newWorld.withCell(x, y, shouldBeAlive)
-            }
+        return world.build { x, y ->
+            shouldBeAlive(
+                world.isAlive(x, y),
+                world.countNeighbors(x, y)
+            )
         }
-        return newWorld
     }
 
     private fun shouldBeAlive(isAlive: Boolean, neighborsCount: Int): Boolean {

@@ -19,8 +19,11 @@ data class World(val width: Int, val height: Int, val cells: BooleanArray = Bool
 
     fun isAlive(x: Int, y: Int) = cells[x + y * width]
 
-    fun withCell(x: Int, y: Int, value: Boolean) {
-        cells[x + y * width] = value
+    fun build(transformation: (Int, Int) -> Boolean): World {
+        val newCells = cells.indices.map {
+            transformation.invoke(it % width, it / height)
+        }.toBooleanArray()
+        return World(width, height, newCells)
     }
 
     override fun equals(other: Any?): Boolean {
