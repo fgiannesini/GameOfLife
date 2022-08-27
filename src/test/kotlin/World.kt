@@ -11,7 +11,7 @@ data class World(val width: Int, val height: Int, val cells: BooleanArray = Bool
         NW(-1, -1)
     }
 
-    fun countNeighbours(x: Int, y: Int): Int {
+    fun countNeighbors(x: Int, y: Int): Int {
         return Directions.values().map { Pair(x + it.x, y + it.y) }
             .filterNot { it.first >= width || it.first < 0 || it.second >= height || it.second < 0 }
             .count { cells[it.first + it.second * width] }

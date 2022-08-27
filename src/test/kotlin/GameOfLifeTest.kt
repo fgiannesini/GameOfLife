@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 class GameOfLifeTest {
 
     @Test
-    fun `should kill a cell if there are no neighbours`() {
+    fun `should kill a cell if there are no neighbors`() {
         val world = World(
             3, 3, booleanArrayOf(
                 false, false, false,
@@ -17,7 +17,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `should kill a cell if there is one neighbour`() {
+    fun `should kill a cell if there is one neighbor`() {
         val world = World(
             3, 3, booleanArrayOf(
                 false, false, false,
@@ -31,7 +31,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `should keep a cell alive if there are two neighbours alive`() {
+    fun `should keep a cell alive if there are two neighbors alive`() {
         val world = World(
             3, 3, booleanArrayOf(
                 false, true, false,
@@ -46,7 +46,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `should keep a cell alive if there are three neighbours alive`() {
+    fun `should keep a cell alive if there are three neighbors alive`() {
         val world = World(
             3, 3, booleanArrayOf(
                 true, true, false,
@@ -62,7 +62,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `should create a cell if it is dead and there are three neighbours alive`() {
+    fun `should create a cell if it is dead and there are three neighbors alive`() {
         val world = World(
             3, 3, booleanArrayOf(
                 false, true, false,
@@ -75,7 +75,7 @@ class GameOfLifeTest {
     }
 
     @Test
-    fun `should kill a cell if it is alive and there are more than three neighbours alive`() {
+    fun `should kill a cell if it is alive and there are more than three neighbors alive`() {
         val world = World(
             3, 3, booleanArrayOf(
                 true, true, true,
