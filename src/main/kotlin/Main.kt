@@ -19,15 +19,10 @@ class SimpleEx(title: String) : JFrame() {
         setLocationRelativeTo(null)
 
 
-        var world = World(
-            5, 5, booleanArrayOf(
-                false, false, false, false, false,
-                false, false, false, false, false,
-                false, true, true, true, false,
-                false, false, false, false, false,
-                false, false, false, false, false,
-            )
-        )
+        val pattern = World(3, 1, booleanArrayOf(true, true, true))
+        var world = World(5, 5)
+            .addPatternAt(1, 2, pattern)
+
         val gameOfLife = GameOfLife()
 
         // Initializing the JTable

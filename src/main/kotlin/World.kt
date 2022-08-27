@@ -47,4 +47,14 @@ data class World(val width: Int, val height: Int, val cells: BooleanArray = Bool
         result = 31 * result + cells.contentHashCode()
         return result
     }
+
+    fun addPatternAt(x: Int, y: Int, pattern: World): World {
+        val newCells = cells.clone()
+        for (i in 0 until pattern.width) {
+            for (j in 0 until pattern.height) {
+                newCells[x + i + (y + j) * width] = pattern.valueAt(i, j)
+            }
+        }
+        return World(width, height, newCells)
+    }
 }
