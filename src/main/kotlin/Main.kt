@@ -19,13 +19,21 @@ class SimpleEx(title: String) : JFrame() {
 
     private fun createUI(title: String) {
 
-        val pattern = World(3, 1, booleanArrayOf(true, true, true))
-        var world = World(5, 5)
-            .addPatternAt(1, 2, pattern)
+        val movingPattern = World(
+            3, 3, booleanArrayOf(
+                false, true, false,
+                false, false, true,
+                true, true, true
+            )
+        )
+        val periodicPattern = World(3, 1, booleanArrayOf(true, true, true))
+        var world = World(30, 30)
+            .addPatternAt(1, 1, movingPattern)
+            .addPatternAt(3, 15, periodicPattern)
 
         val gameOfLife = GameOfLife()
 
-        setSize(400, 400)
+        setSize(1000, 1000)
         setTitle(title)
         defaultCloseOperation = EXIT_ON_CLOSE
         setLocationRelativeTo(null)
@@ -62,7 +70,7 @@ class SimpleEx(title: String) : JFrame() {
         })
         add(table)
 
-        val timer = Timer(1000) {
+        val timer = Timer(500) {
             world = gameOfLife.run(world)
             updateTable(table, world)
         }
@@ -73,7 +81,7 @@ class SimpleEx(title: String) : JFrame() {
         for (j in (0 until world.height)) {
             for (i in (0 until world.width)) {
                 val valueAt = if (world.valueAt(i, j)) "+" else ""
-                table.setValueAt(valueAt, i, j)
+                table.setValueAt(valueAt, j, i)
             }
         }
     }
